@@ -10,7 +10,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-var port = 8080;
+var port = process.env.port || 8080;
 
 var router = express.Router();
 
