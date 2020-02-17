@@ -90,6 +90,21 @@ app.get("/v1/steam/GetAppDetails/:appids", async function(req, res, next) {
   res.send(json);
 });
 
+// Steam friends
+app.get("/v1/steam/GetFriendList/:steamid", async function(req, res, next) {
+  let steamid = req.params.steamid;
+  console.log(steamid);
+  const response = await fetch(
+    `https://api.steampowered.com/ISteamUser/GetFriendList/v1/?key=${process.env.STEAM_SECRET}&steamid=${steamid}&format=json`
+  );
+  const json = await response.json();
+
+  console.log("steam friend list response");
+  console.log(json);
+
+  res.send(json);
+});
+
 // START THE SERVER
 app.listen(port);
 console.log(`server listening on port ${port}`);
